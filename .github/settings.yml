@@ -1,7 +1,3 @@
-_extends: .github
-_logs:
-  level: debug
-
 repository:
   name: test-merging
   description: Repository for testing branch protection rules
