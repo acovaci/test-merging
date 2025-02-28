@@ -10,3 +10,4 @@ Testing merge rules
 - And yet another line
 - And one more
 - One more
+- Another one
