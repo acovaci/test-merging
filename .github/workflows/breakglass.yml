@@ -9,14 +9,16 @@ jobs:
     if: ${{ github.event.comment.body == '/breakglass' }}
     runs-on: ubuntu-latest
     steps:
-      - name: Announce the imminent merge
-        run: |
-          gh pr comment ${{ github.event.issue.number }} -b "Breaking glass and merging this PR immediately"
       - name: Checkout the Pull Request
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Announce the imminent merge
+        run: |
+          gh pr comment ${{ github.event.issue.number }} -b "Breaking glass and merging this PR immediately"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up the SSH key
         run: |
           echo "${{ secrets.BREAKGLASS_SSH_KEY }}" > ~/.ssh/id_ed25519
