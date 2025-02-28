@@ -14,6 +14,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ssh-key: ${{ secrets.BREAKGLASS_SSH_KEY }}
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: Announce the imminent merge
         run: |
@@ -26,14 +27,14 @@ jobs:
           chmod 600 ~/id_ed25519
       - name: Set up the Git configuration
         run: |
-          GIT_SSH_COMMAND="ssh -i id_ed25519" git config --global user.email "abc@example.com"
-          GIT_SSH_COMMAND="ssh -i id_ed25519" git config --global user.name "ABC"
+          git config --global user.email "abc@example.com"
+          git config --global user.name "ABC"
       - name: Merge the Pull Request
         run: |
           PR_NUMBER=${{ github.event.issue.number }}
           PR_REF=$(gh pr view $PR_NUMBER --json headRefName -q '.headRefName')
-          GIT_SSH_COMMAND="ssh -i id_ed25519" git fetch origin refs/pull/$PR_NUMBER/head:$PR_REF
-          GIT_SSH_COMMAND="ssh -i id_ed25519" git checkout $PR_REF
-          GIT_SSH_COMMAND="ssh -i id_ed25519" gh pr merge $PR_NUMBER --squash --delete-branch --admin
+          git fetch origin refs/pull/$PR_NUMBER/head:$PR_REF
+          git checkout $PR_REF
+          gh pr merge $PR_NUMBER --squash --delete-branch --admin
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
