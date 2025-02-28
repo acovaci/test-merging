@@ -35,3 +35,5 @@ jobs:
           GIT_SSH_COMMAND="ssh -i id_ed25519" git fetch origin refs/pull/$PR_NUMBER/head:$PR_REF
           GIT_SSH_COMMAND="ssh -i id_ed25519" git checkout $PR_REF
           GIT_SSH_COMMAND="ssh -i id_ed25519" gh pr merge $PR_NUMBER --squash --delete-branch
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
