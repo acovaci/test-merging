@@ -1,0 +1,18 @@
+name: Mock a Main run
+on:
+  push:
+    branches:
+      - main
+
+env:
+  MOCK_TYPE: ${{ startsWith(github.event.head_commit.message, 'PR-OK') && 'SUCCESS' || startsWith(github.event.head_commit.message, 'PR-TEST') && 'TEST' || 'FAIL' }}
+
+jobs:
+  mock:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mock a Pull Request
+        run: sleep 30
+      - name: Fail if Mock Type is not SUCCESS
+        if: env.MOCK_TYPE != 'SUCCESS'
+        run: exit 1
