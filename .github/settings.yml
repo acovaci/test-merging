@@ -57,5 +57,5 @@ rulesets:
         include:
           - main
     rules:
-      - type: commit_signature_requirement
-      - type: linear_history_requirement
+      - type: deletion
+      - type: non_fast_forward
