@@ -45,7 +45,7 @@ branches:
         teams: []
 
 rulesets:
-  - name: Enforce checks on latest commit
+  - name: Main Branch Protection
     target: branch
     enforcement: active
     conditions:
@@ -61,8 +61,8 @@ rulesets:
             - context: mock
       - type: pull_request
         parameters:
-          allowed_merge_methods:
-            - squash
+          # allowed_merge_methods:
+          #   - squash
           dismiss_stale_reviews_on_push: true
           require_code_owner_reviews: true
           require_last_push_approval: true
