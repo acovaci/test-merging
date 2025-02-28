@@ -33,8 +33,17 @@ jobs:
         run: |
           PR_NUMBER=${{ github.event.issue.number }}
           PR_REF=$(gh pr view $PR_NUMBER --json headRefName -q '.headRefName')
+          git fetch origin main
           git fetch origin refs/pull/$PR_NUMBER/head:$PR_REF
-          git checkout $PR_REF
-          gh pr merge $PR_NUMBER --squash --delete-branch --admin
+          git checkout main
+          git merge --squash origin/$PR_REF
+          git commit -m "Breakglass squash merge of PR #${{ github.event.issue.number }}"
+          git push origin main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Clean up
+        run: |
+          gh pr comment ${{ github.event.issue.number }} -b "The PR has been merged"
+          gh pr close ${{ github.event.issue.number }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
