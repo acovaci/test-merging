@@ -13,6 +13,8 @@ jobs:
         if: ${{ !contains(github.event.pull_request.labels.*.name, 'Hotfix') }}
         run: |
           gh pr comment ${{ github.event.number }} -b "It looks like this PR is a hotfix. In case you are fixing a production issue and need to break glass, please comment with '/breakglass' on this PR, after which it will be merged immediately."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Label the PR as Hotfix
         if: ${{ !contains(github.event.pull_request.labels.*.name, 'Hotfix') }}
         run: gh pr label ${{ github.event.number }} Hotfix
