@@ -6,6 +6,7 @@ on:
 
 jobs:
   hotfix-check:
+    permissions: write-all
     if: startsWith(github.head_ref, 'hotfix/')
     runs-on: ubuntu-latest
     steps:
