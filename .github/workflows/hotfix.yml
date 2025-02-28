@@ -21,3 +21,5 @@ jobs:
       - name: Label the PR as Hotfix
         if: ${{ !contains(github.event.pull_request.labels.*.name, 'Hotfix') }}
         run: gh pr edit ${{ github.event.number }} --add-label Hotfix
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
