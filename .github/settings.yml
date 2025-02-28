@@ -51,14 +51,16 @@ branches:
 rulesets:
   - name: "Require PR reviews"
     target: branch
+    enforcement: active
     conditions:
       ref_name:
         include: ["main", "release/*"]
         exclude: []
     rules:
-      required_signatures: true
-      required_linear_history: true
-      pull_request:
-        required_approving_review_count: 1
-        dismiss_stale_reviews_on_push: true
-        require_code_owner_review: true
+      - type: commit_signature_requirement
+      - type: linear_history_requirement
+      - type: pull_request
+        parameters:
+          require_code_owner_review: true
+          required_approving_review_count: 1
+          dismiss_stale_reviews_on_push: true
