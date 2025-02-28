@@ -1,18 +1,18 @@
-# repository:
-#   name: test-merging
-#   description: Repository for testing branch protection rules, again
-#   homepage:
-#   topics: github, branch-protection, test
-#   private: false
-#   has_issues: false
-#   has_projects: false
-#   has_wiki: false
-#   has_downloads: false
-#   default_branch: main
-#   allow_squash_merge: true
-#   allow_merge_commit: false
-#   allow_rebase_merge: false
-#   delete_branch_on_merge: true
+repository:
+  name: test-merging
+  description: Repository for testing branch protection rules, again
+  homepage:
+  topics: github, branch-protection, test
+  private: false
+  has_issues: false
+  has_projects: false
+  has_wiki: false
+  has_downloads: false
+  default_branch: main
+  allow_squash_merge: true
+  allow_merge_commit: false
+  allow_rebase_merge: false
+  delete_branch_on_merge: true
 #   enable_automated_security_fixes: true
 #   enable_vulnerability_alerts: true
 
