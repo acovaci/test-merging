@@ -3,7 +3,7 @@ repository:
   description: Repository for testing branch protection rules
   homepage:
   topics: github, branch-protection, test
-  private: true
+  private: false
   has_issues: false
   has_projects: false
   has_wiki: false
