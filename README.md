@@ -6,3 +6,4 @@ Testing merge rules
 
 - Added a new line to the README.md file
 - And another line
+- And yet another line
