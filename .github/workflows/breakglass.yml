@@ -22,17 +22,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up the SSH key
         run: |
-          echo "${{ secrets.BREAKGLASS_SSH_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          echo "${{ secrets.BREAKGLASS_SSH_KEY }}" > ~/id_ed25519
+          chmod 600 ~/id_ed25519
       - name: Set up the Git configuration
         run: |
-          git config --global user.email "abc@example.com"
-          git config --global user.name "ABC"
+          GIT_SSH_COMMAND="ssh -i id_ed25519" git config --global user.email "abc@example.com"
+          GIT_SSH_COMMAND="ssh -i id_ed25519" git config --global user.name "ABC"
       - name: Merge the Pull Request
         run: |
           PR_NUMBER=${{ github.event.issue.number }}
           PR_REF=$(gh pr view $PR_NUMBER --json headRefName -q '.headRefName')
-          git fetch origin refs/pull/$PR_NUMBER/head:$PR_REF
-          git checkout $PR_REF
-          gh pr merge $PR_NUMBER --squash --delete-branch
+          GIT_SSH_COMMAND="ssh -i id_ed25519" git fetch origin refs/pull/$PR_NUMBER/head:$PR_REF
+          GIT_SSH_COMMAND="ssh -i id_ed25519" git checkout $PR_REF
+          GIT_SSH_COMMAND="ssh -i id_ed25519" gh pr merge $PR_NUMBER --squash --delete-branch
