@@ -34,6 +34,6 @@ jobs:
           PR_REF=$(gh pr view $PR_NUMBER --json headRefName -q '.headRefName')
           GIT_SSH_COMMAND="ssh -i id_ed25519" git fetch origin refs/pull/$PR_NUMBER/head:$PR_REF
           GIT_SSH_COMMAND="ssh -i id_ed25519" git checkout $PR_REF
-          GIT_SSH_COMMAND="ssh -i id_ed25519" gh pr merge $PR_NUMBER --squash --delete-branch
+          GIT_SSH_COMMAND="ssh -i id_ed25519" gh pr merge $PR_NUMBER --squash --delete-branch --admin
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
