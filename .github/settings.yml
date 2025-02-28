@@ -1,7 +1,7 @@
 repository:
   name: test-merging
   description: Repository for testing branch protection rules
-  homepage: oaknorth.co.uk
+  homepage:
   topics: github, branch-protection, test
   private: true
   has_issues: false
