@@ -6,6 +6,7 @@ on:
 
 jobs:
   breakglass:
+    permissions: write-all
     if: ${{ github.event.comment.body == '/breakglass' }}
     runs-on: ubuntu-latest
     steps:

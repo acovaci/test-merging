@@ -8,3 +8,4 @@ Testing merge rules
 - And another line
 - And yet another line
 - And yet another line
+- And one more
