@@ -49,13 +49,14 @@ branches:
         teams: []
 
 rulesets:
-  - name: "Require PR reviews"
+  - name: prevent destruction of the default branch
     target: branch
     enforcement: active
     conditions:
       ref_name:
         include:
-          - main
+          - "~DEFAULT_BRANCH"
+        exclude: []
     rules:
       - type: deletion
       - type: non_fast_forward
