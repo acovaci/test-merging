@@ -1,0 +1,35 @@
+name: Break glass
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  breakglass:
+    if: ${{ github.event.comment.body == '/breakglass' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Announce the imminent merge
+        run: |
+          gh pr comment ${{ github.event.issue.number }} -b "Breaking glass and merging this PR immediately"
+      - name: Checkout the Pull Request
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up the SSH key
+        run: |
+          echo "${{ secrets.BREAKGLASS_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - name: Set up the Git configuration
+        run: |
+          git config --global user.email "abc@example.com"
+          git config --global user.name "ABC"
+      - name: Merge the Pull Request
+        run: |
+          PR_NUMBER=${{ github.event.issue.number }}
+          PR_REF=$(gh pr view $PR_NUMBER --json headRefName -q '.headRefName')
+          git fetch origin refs/pull/$PR_NUMBER/head:$PR_REF
+          git checkout $PR_REF
+          gh pr merge $PR_NUMBER --squash --delete-branch
