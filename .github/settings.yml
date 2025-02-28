@@ -43,11 +43,11 @@ branches:
         apps: []
         users: []
         teams: []
-# rulesets:
-#   - name: verification must pass
-#     target: branch
-#     enforcement: active
-#     conditions:
-#       ref_name:
-#         include:
-#           - "~DEFAULT_BRANCH"
+rulesets:
+  - name: verification must pass
+    target: branch
+    enforcement: active
+    conditions:
+      ref_name:
+        include:
+          - "~DEFAULT_BRANCH"
