@@ -1,0 +1,8 @@
+name: Mock a Pull Request
+on: [push]
+jobs:
+  mock:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mock a Pull Request
+        run: sleep 30
