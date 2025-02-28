@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Fail if main is not green
         run: |
-          MAIN_STATUS=$(gh run list -b main -L 1 --json status | jq -r '.[0].status')
+          MAIN_STATUS=$(gh run list -b main -L 1 --json status --repo acovaci/test-merging | jq -r '.[0].status')
           echo "Main branch status is $MAIN_STATUS"
           if [ "$MAIN_STATUS" != "completed" ]; then
             exit 1
