@@ -1,7 +1,7 @@
 repository:
   name: test-merging
   description: Repository for testing branch protection rules
-  homepage:
+  homepage: ""
   topics: github, branch-protection, test
   private: false
   has_issues: false
