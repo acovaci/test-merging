@@ -1,9 +1,16 @@
 name: Mock a Pull Request
 on:
   pull_request:
+
+env:
+  MOCK_TYPE: ${{ startsWith(github.event.pull_request.title, 'PR-OK') && 'SUCCESS' || startsWith(github.event.pull_request.title, 'PR-TEST') && 'TEST' || 'FAIL' }}
+
 jobs:
   mock:
     runs-on: ubuntu-latest
     steps:
       - name: Mock a Pull Request
         run: sleep 30
+      - name: Fail if Mock Type is FAIL
+        if: env.MOCK_TYPE == 'FAIL'
+        run: exit 1
