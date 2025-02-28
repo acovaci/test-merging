@@ -45,7 +45,7 @@ branches:
         teams: []
 
 rulesets:
-  - name: prevent destruction of the default branch bis
+  - name: Enforce checks on latest commit
     target: branch
     enforcement: active
     conditions:
