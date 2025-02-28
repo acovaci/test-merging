@@ -1,4 +1,4 @@
-name: Break glass
+name: Check main branch status
 on:
   pull_request:
 
